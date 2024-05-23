@@ -1,3 +1,25 @@
+# 3ali's purpose :
+  - Train models using LoRA in Multi-GPU setting
+### Supervised Fine-Tuning with DeepSpeed ZeRO-3 (Weight Sharding)
+
+```bash
+bash examples/lora_multi_gpu/pt_ds_zero3.sh
+```
+
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+-----
+
+
 We provide diverse examples about fine-tuning LLMs.
 
 Make sure to execute these commands in the `LLaMA-Factory` directory.
