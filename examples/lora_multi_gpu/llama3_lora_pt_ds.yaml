@@ -40,3 +40,10 @@ val_size: 0.1
 per_device_eval_batch_size: 1
 evaluation_strategy: steps
 eval_steps: 500
+
+### hub
+push_to_hub : True
+hub_model_id : 2A2I-R/llama3-8b-I.wiki-ary.lora
+hub_strategy : checkpoint
+hub_token : "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"
+hub_private_repo : True 
