@@ -471,5 +471,11 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "AbderrahmanSkiredj1-wiki-ary": {
+    "hf_hub_url": "AbderrahmanSkiredj1/moroccan_darija_wikipedia_dataset",
+    "columns": {
+      "prompt": "text"
+    }
   }
 }
