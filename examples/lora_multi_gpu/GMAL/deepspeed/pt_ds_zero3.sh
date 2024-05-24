@@ -13,8 +13,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun \
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT \
     src/train.py examples/lora_multi_gpu/GMAL/configs/tests/test_multi_gpu_push_hub.yaml
-    --push_to_hub True \
-    --hub_model_id username/model \
-    --hub_strategy checkpoint \
-    --hub_token xxx \
-    --hub_private_repo True \
+    # --push_to_hub True \
+    # --hub_model_id username/model \
+    # --hub_strategy checkpoint \
+    # --hub_token xxx \
+    # --hub_private_repo True \
