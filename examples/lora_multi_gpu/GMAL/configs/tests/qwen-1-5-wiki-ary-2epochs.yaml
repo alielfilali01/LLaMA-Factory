@@ -36,12 +36,12 @@ lora_rank: 16  # The intrinsic dimension for LoRA fine-tuning.
 lora_alpha: 32  # Optional. The scale factor for LoRA fine-tuning (default: lora_rank * 2).
 lora_dropout: 0.05  # Dropout rate for the LoRA fine-tuning.
 use_rslora: false  # Whether or not to use the rank stabilization scaling factor for LoRA layer.
-use_dora: false  # Whether or not to use the weight-decomposed lora method (DoRA).
+use_dora: true  # Whether or not to use the weight-decomposed lora method (DoRA).
 create_new_adapter: false  # Whether or not to create a new adapter with randomly initialized weight.
 
 
 ### output
-output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/lora-16r/epochs-2
+output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/dora-16r/epochs-2
 logging_steps: 10
 save_steps: 500
 plot_loss: true
