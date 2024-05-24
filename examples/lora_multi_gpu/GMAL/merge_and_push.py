@@ -17,6 +17,8 @@ ADAPTER_PATH = args.adapter_path
 BASE_MODEL = args.base_model
 ADAPTER_NAME = ADAPTER_PATH.replace('/', '-').replace('.', '') + "-adapter"
 MODEL_NAME = ADAPTER_PATH.replace('/', '-').replace('.', '') + "-model"
+ORG = "Ali-C137"
+TOKEN="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"
 
 # Load the tokenizer and base model
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
@@ -24,8 +26,8 @@ base_model = AutoModelForCausalLM.from_pretrained(BASE_MODEL)
 
 # Load the adapter and push it to the hub
 model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
-model.push_to_hub(ADAPTER_NAME, private=True, token="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")
+model.push_to_hub(f"{ORG}/{ADAPTER_NAME}", private=True, token=TOKEN)
 
 # Merge the adapter with the base model
 model = model.merge_and_unload()
-model.push_to_hub(MODEL_NAME, private=True, token="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")
+model.push_to_hub(f"{ORG}/{MODEL_NAME}", private=True, token=TOKEN)
