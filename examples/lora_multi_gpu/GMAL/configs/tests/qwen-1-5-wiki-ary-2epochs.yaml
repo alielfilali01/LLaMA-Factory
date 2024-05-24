@@ -36,7 +36,7 @@ lora_rank: 16  # The intrinsic dimension for LoRA fine-tuning.
 lora_alpha: 32  # Optional. The scale factor for LoRA fine-tuning (default: lora_rank * 2).
 lora_dropout: 0.05  # Dropout rate for the LoRA fine-tuning.
 use_rslora: false  # Whether or not to use the rank stabilization scaling factor for LoRA layer.
-use_dora: false  # Whether or not to use the weight-decomposed lora method (DoRA).
+use_dora: true  # Whether or not to use the weight-decomposed lora method (DoRA).
 create_new_adapter: false  # Whether or not to create a new adapter with randomly initialized weight.
 
 
