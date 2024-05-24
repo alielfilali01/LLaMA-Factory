@@ -1,0 +1,58 @@
+### ddp
+ddp_timeout: 180000000
+deepspeed: examples/deepspeed/ds_z3_config.json
+
+
+### model
+model_name_or_path: Qwen/Qwen1.5-7B
+use_fast_tokenizer: true  # Whether or not to use one of the fast tokenizer (backed by the tokenizers library).
+model_revision: "main"  # The specific model version to use (can be a branch name, tag name or commit id).
+low_cpu_mem_usage: true  # Whether or not to use memory-efficient model loading.
+quantization_bit: null  # Optional. The number of bits to quantize the model using bitsandbytes. Accepted values: [None, 8, 4].
+flash_attn: "auto"  # Enable FlashAttention for faster training and inference. Accepted values: ["off", "sdpa", "fa2", "auto"].
+
+
+### dataset
+dataset: AbderrahmanSkiredj1-wiki-ary
+template: qwen
+cutoff_len: 4090
+max_samples: 1000
+overwrite_cache: true
+preprocessing_num_workers: 16
+### eval
+val_size: 0.1
+per_device_eval_batch_size: 1
+evaluation_strategy: steps
+eval_steps: 500
+
+
+### method
+stage: pt
+do_train: true
+finetuning_type: lora
+lora_target: all # lora_target: q_proj,v_proj
+### lora training
+lora_rank: 16  # The intrinsic dimension for LoRA fine-tuning.
+lora_alpha: 32  # Optional. The scale factor for LoRA fine-tuning (default: lora_rank * 2).
+lora_dropout: 0.05  # Dropout rate for the LoRA fine-tuning.
+use_rslora: false  # Whether or not to use the rank stabilization scaling factor for LoRA layer.
+use_dora: false  # Whether or not to use the weight-decomposed lora method (DoRA).
+create_new_adapter: false  # Whether or not to create a new adapter with randomly initialized weight.
+
+
+### output
+output_dir: saves/lora/pt/qwen-1.5-7B/ary-wiki
+logging_steps: 10
+save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 0.0001
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_steps: 0.1
+fp16: true
