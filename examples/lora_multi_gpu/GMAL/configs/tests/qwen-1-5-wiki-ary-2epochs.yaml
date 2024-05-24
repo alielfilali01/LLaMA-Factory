@@ -41,7 +41,7 @@ create_new_adapter: false  # Whether or not to create a new adapter with randoml
 
 
 ### output
-output_dir: saves/lora/pt/qwen-1.5-7B/ary-wiki
+output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/lora-16r/epochs-2
 logging_steps: 10
 save_steps: 500
 plot_loss: true
