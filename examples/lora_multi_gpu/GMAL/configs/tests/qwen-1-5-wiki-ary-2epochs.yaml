@@ -29,7 +29,7 @@ eval_steps: 500
 ### method
 stage: pt
 do_train: true
-finetuning_type: lora
+finetuning_type: qlora
 lora_target: all # lora_target: q_proj,v_proj
 ### lora training
 lora_rank: 16  # The intrinsic dimension for LoRA fine-tuning.
