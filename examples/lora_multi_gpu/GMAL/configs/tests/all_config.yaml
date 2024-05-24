@@ -1,0 +1,172 @@
+### model
+model_name_or_path: "NousResearch/Meta-Llama-3-8B-Instruct"  # Path to the model weight or identifier from huggingface.co/models or modelscope.cn/models.
+adapter_name_or_path: null  # Optional. Path to the adapter weight or identifier from huggingface.co/models.
+cache_dir: null  # Optional. Where to store the pre-trained models downloaded from huggingface.co or modelscope.cn.
+use_fast_tokenizer: true  # Whether or not to use one of the fast tokenizer (backed by the tokenizers library).
+resize_vocab: false  # Whether or not to resize the tokenizer vocab and the embedding layers.
+split_special_tokens: false  # Whether or not the special tokens should be split during the tokenization process.
+new_special_tokens: null  # Special tokens to be added into the tokenizer.
+model_revision: "main"  # The specific model version to use (can be a branch name, tag name or commit id).
+low_cpu_mem_usage: true  # Whether or not to use memory-efficient model loading.
+quantization_bit: null  # Optional. The number of bits to quantize the model using bitsandbytes. Accepted values: [None, 8, 4].
+quantization_type: "nf4"  # Quantization data type to use in int4 training. Accepted values: ["fp4", "nf4"].
+double_quantization: true  # Whether or not to use double quantization in int4 training.
+quantization_device_map: null  # Optional. Device map used to infer the 4-bit quantized model. Accepted value: ["auto"].
+rope_scaling: null  # Optional. Which scaling strategy should be adopted for the RoPE embeddings. Accepted values: ["linear", "dynamic"].
+flash_attn: "auto"  # Enable FlashAttention for faster training and inference. Accepted values: ["off", "sdpa", "fa2", "auto"].
+shift_attn: false  # Enable shift short attention (S^2-Attn) proposed by LongLoRA.
+mixture_of_depths: null  # Optional. Convert the model to mixture-of-depths (MoD) or load the MoD model. Accepted values: ["convert", "load"].
+use_unsloth: false  # Whether or not to use unsloth's optimization for the LoRA training.
+visual_inputs: false  # Whether or not to use multimodal LLM that accepts visual inputs.
+moe_aux_loss_coef: null  # Optional. Coefficient of the auxiliary router loss in mixture-of-experts model.
+disable_gradient_checkpointing: false  # Whether or not to disable gradient checkpointing.
+upcast_layernorm: false  # Whether or not to upcast the layernorm weights in fp32.
+upcast_lmhead_output: false  # Whether or not to upcast the output of lm_head in fp32.
+infer_backend: "huggingface"  # Backend engine used at inference. Accepted values: ["huggingface", "vllm"].
+vllm_maxlen: 2048  # Maximum input length of the vLLM engine.
+vllm_gpu_util: 0.9  # The fraction of GPU memory in (0,1) to be used for the vLLM engine.
+vllm_enforce_eager: false  # Whether or not to disable CUDA graph in the vLLM engine.
+vllm_max_lora_rank: 8  # Maximum rank of all LoRAs in the vLLM engine.
+offload_folder: "offload"  # Path to offload model weights.
+use_cache: true  # Whether or not to use KV cache in generation.
+hf_hub_token: null  # Optional. Auth token to log in with Hugging Face Hub.
+ms_hub_token: null  # Optional. Auth token to log in with ModelScope Hub.
+export_dir: null  # Optional. Path to the directory to save the exported model.
+export_size: 1  # The file shard size (in GB) of the exported model.
+export_device: "cpu"  # The device used in model export. Accepted values: ["cpu", "cuda"].
+export_quantization_bit: null  # Optional. The number of bits to quantize the exported model. Accepted values: [None, 8, 4, 3, 2].
+export_quantization_dataset: null  # Optional. Path to the dataset or dataset name to use in quantizing the exported model.
+export_quantization_nsamples: 128  # The number of samples used for quantization.
+export_quantization_maxlen: 1024  # The maximum length of the model inputs used for quantization.
+export_legacy_format: false  # Whether or not to save the `.bin` files instead of `.safetensors`.
+export_hub_model_id: null  # Optional. The name of the repository if pushing the model to the Hugging Face hub.
+print_param_status: false  # For debugging purposes, print the status of the parameters in the model.
+
+### method
+stage: pt  # Which stage will be performed in training. Accepted values: ["pt", "sft", "rm", "ppo", "dpo", "kto", "orpo"].
+do_train: true  # Whether to perform training.
+finetuning_type: lora  # Which fine-tuning method to use. Accepted values: ["lora", "freeze", "full"].
+lora_target: q_proj,v_proj  # Name(s) of target modules to apply LoRA. Use commas to separate multiple modules. Use `all` to specify all the linear modules.
+
+### ddp
+ddp_timeout: 180000000  # Timeout for DDP training.
+deepspeed: examples/deepspeed/ds_z3_config.json  # Path to the DeepSpeed configuration file.
+
+### dataset
+template: llama3  # Which template to use for constructing prompts in training and inference.
+dataset: AbderrahmanSkiredj1-wiki-ary  # The name of provided dataset(s) to use. Use commas to separate multiple datasets.
+dataset_dir: "data"  # Path to the folder containing the datasets.
+split: "train"  # Which dataset split to use for training and evaluation.
+cutoff_len: 1024  # The cutoff length of the tokenized inputs in the dataset.
+reserved_label_len: 1  # The minimum cutoff length reserved for the tokenized labels in the dataset.
+train_on_prompt: false  # Whether to disable the mask on the prompt or not.
+streaming: false  # Enable dataset streaming.
+buffer_size: 16384  # Size of the buffer to randomly sample examples from in dataset streaming.
+mix_strategy: concat  # Strategy to use in dataset mixing. Accepted values: ["concat", "interleave_under", "interleave_over"].
+interleave_probs: null  # Optional. Probabilities to sample data from datasets. Use commas to separate multiple datasets.
+overwrite_cache: true  # Overwrite the cached training and evaluation sets.
+preprocessing_num_workers: 16  # The number of processes to use for the pre-processing.
+max_samples: 1000  # Optional. For debugging purposes, truncate the number of examples for each dataset.
+eval_num_beams: null  # Optional. Number of beams to use for evaluation. This argument will be passed to `model.generate`.
+ignore_pad_token_for_loss: true  # Whether or not to ignore the tokens corresponding to padded labels in the loss computation.
+val_size: 0.1  # Size of the development set, should be an integer or a float in range `[0,1)`.
+packing: null  # Optional. Whether or not to pack the sequences in training. Will automatically enable in pre-training.
+tokenized_path: null  # Optional. Path to save or load the tokenized datasets.
+
+### output
+output_dir: saves/llama3-8b/lora/pt  # Directory to save the model and other outputs.
+logging_steps: 10  # Steps interval to log the training progress.
+save_steps: 500  # Steps interval to save the model checkpoint.
+plot_loss: true  # Whether or not to save the training loss curves.
+overwrite_output_dir: true  # Overwrite the output directory if it exists.
+
+### train
+per_device_train_batch_size: 1  # Batch size per device during training.
+gradient_accumulation_steps: 2  # Number of gradient accumulation steps.
+learning_rate: 0.0001  # Initial learning rate for training.
+num_train_epochs: 3.0  # Total number of training epochs.
+lr_scheduler_type: cosine  # Learning rate scheduler type. Possible values: ["linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"].
+warmup_steps: 0.1  # Number of warmup steps for learning rate scheduler.
+fp16: true  # Whether to use 16-bit (mixed) precision training.
+
+### eval
+val_size: 0.1  # Size of the development set, should be an integer or a float in range `[0,1)`.
+per_device_eval_batch_size: 1  # Batch size per device during evaluation.
+evaluation_strategy: steps  # Evaluation strategy to use. Possible values: ["no", "steps", "epoch"].
+eval_steps: 500  # Steps interval to perform evaluation.
+
+### freeze (partial-parameter) training
+freeze_trainable_layers: 2  # The number of trainable layers for freeze (partial-parameter) fine-tuning. Positive numbers mean the last n layers are set as trainable, negative numbers mean the first n layers are set as trainable.
+freeze_trainable_modules: "all"  # Name(s) of trainable modules for freeze (partial-parameter) fine-tuning. Use commas to separate multiple modules. Use `all` to specify all the available modules.
+
+### lora training
+additional_target: null  # Optional. Name(s) of modules apart from LoRA layers to be set as trainable and saved in the final checkpoint. Use commas to separate multiple modules.
+lora_alpha: null  # Optional. The scale factor for LoRA fine-tuning (default: lora_rank * 2).
+lora_dropout: 0.0  # Dropout rate for the LoRA fine-tuning.
+lora_rank: 8  # The intrinsic dimension for LoRA fine-tuning.
+loraplus_lr_ratio: null  # Optional. LoRA plus learning rate ratio (lr_B / lr_A).
+loraplus_lr_embedding: 1e-6  # LoRA plus learning rate for lora embedding layers.
+use_rslora: false  # Whether or not to use the rank stabilization scaling factor for LoRA layer.
+use_dora: false  # Whether or not to use the weight-decomposed lora method (DoRA).
+create_new_adapter: false  # Whether or not to create a new adapter with randomly initialized weight.
+### NEFTune
+neftune_noise_alpha: 0.0 # NEFTune Alpha : Magnitude of noise adding to embedding vectors, takes value between 0.0 and 10.0
+
+### PPO and DPO training
+dpo_beta: 0.1  # The beta parameter for the DPO loss.
+dpo_loss: "sigmoid"  # The type of DPO loss to use. Accepted values: ["sigmoid", "hinge", "ipo", "kto_pair"].
+dpo_label_smoothing: 0.0  # The robust DPO label smoothing parameter in cDPO that should be between 0 and 0.5.
+dpo_ftx: 0.0  # The supervised fine-tuning loss coefficient in DPO training.
+kto_beta: 0.1  # The beta parameter for the KTO loss.
+kto_chosen_weight: 1.0  # The weight factor of the desirable losses in KTO training.
+kto_rejected_weight: 1.0  # The weight factor of the undesirable losses in KTO training.
+kto_ftx: 0.0  # The supervised fine-tuning loss coefficient in KTO training.
+orpo_beta: 0.1  # The beta (lambda) parameter in the ORPO loss representing the weight of the SFT loss.
+ppo_buffer_size: 1  # The number of mini-batches to make experience buffer in a PPO optimization step.
+ppo_epochs: 4  # The number of epochs to perform in a PPO optimization step.
+ppo_score_norm: false  # Use score normalization in PPO training.
+ppo_target: 6.0  # Target KL value for adaptive KL control in PPO training.
+ppo_whiten_rewards: false  # Whiten the rewards before computing advantages in PPO training.
+ref_model: null  # Optional. Path to the reference model used for the PPO or DPO training.
+ref_model_adapters: null  # Optional. Path to the adapters of the reference model.
+ref_model_quantization_bit: null  # Optional. The number of bits to quantize the reference model.
+reward_model: null  # Optional. Path to the reward model used for the PPO training.
+reward_model_adapters: null  # Optional. Path to the adapters of the reward model.
+reward_model_quantization_bit: null  # Optional. The number of bits to quantize the reward model.
+reward_model_type: "lora"  # The type of the reward model in PPO training. Lora model only supports lora training. Accepted values: ["lora", "full", "api"].
+
+### GaLore algorithm
+use_galore: false  # Whether or not to use the gradient low-Rank projection (GaLore).
+galore_target: "all"  # Name(s) of modules to apply GaLore. Use commas to separate multiple modules. Use `all` to specify all the linear modules.
+galore_rank: 16  # The rank of GaLore gradients.
+galore_update_interval: 200  # Number of steps to update the GaLore projection.
+galore_scale: 0.25  # GaLore scaling coefficient.
+galore_proj_type: "std"  # Type of GaLore projection. Accepted values: ["std", "reverse_std", "right", "left", "full"].
+galore_layerwise: false  # Whether or not to enable layer-wise update to further save memory.
+
+### BAdam optimizer
+use_badam: false  # Whether or not to use the BAdam optimizer.
+badam_mode: "layer"  # Whether to use layer-wise or ratio-wise BAdam optimizer. Accepted values: ["layer", "ratio"].
+badam_start_block: null  # Optional. The starting block index for layer-wise BAdam.
+badam_switch_mode: "ascending"  # The strategy of picking block to update for layer-wise BAdam. Accepted values: ["ascending", "descending", "random", "fixed"].
+badam_switch_interval: 50  # Number of steps to update the block for layer-wise BAdam. Use -1 to disable the block update.
+badam_update_ratio: 0.05  # The ratio of the update for ratio-wise BAdam.
+badam_mask_mode: "adjacent"  # The mode of the mask for BAdam optimizer. Accepted values: ["adjacent", "scatter"].
+badam_verbose: 0  # The verbosity level of BAdam optimizer. 0 for no print, 1 for print the block prefix, 2 for print trainable parameters.
+
+### finetuning
+pure_bf16: false  # Whether or not to train model in purely bf16 precision (without AMP).
+use_llama_pro: false  # Whether or not to make only the parameters in the expanded blocks trainable.
+plot_loss: false  # Whether or not to save the training loss curves.
+
+### generation
+do_sample: true  # Whether or not to use sampling, use greedy decoding otherwise.
+temperature: 0.95  # The value used to modulate the next token probabilities.
+top_p: 0.7  # The smallest set of most probable tokens with probabilities that add up to top_p or higher are kept.
+top_k: 50  # The number of highest probability vocabulary tokens to keep for top-k filtering.
+num_beams: 1  # Number of beams for beam search. 1 means no beam search.
+max_length: 1024  # The maximum length the generated tokens can have. It can be overridden by max_new_tokens.
+max_new_tokens: 1024  # The maximum numbers of tokens to generate, ignoring the number of tokens in the prompt.
+repetition_penalty: 1.0  # The parameter for repetition penalty. 1.0 means no penalty.
+length_penalty: 1.0  # Exponential penalty to the length that is used with beam-based generation.
+default_system: null  # Optional. Default system message to use in chat completion.
