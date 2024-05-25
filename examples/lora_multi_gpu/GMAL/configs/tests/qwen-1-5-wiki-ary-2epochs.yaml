@@ -1,6 +1,6 @@
 ### Dircetly Changeable
-template: qwen
 model_name_or_path: Qwen/Qwen1.5-7B
+template: qwen
 dataset: AbderrahmanSkiredj1-wiki-ary
 output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/lora-16r/epochs-2/run_1/25Mai2024/v1
 
@@ -8,7 +8,7 @@ output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/lora-16r/epochs-2/run_1
 use_fast_tokenizer: true  # Whether or not to use one of the fast tokenizer (backed by the tokenizers library).
 model_revision: "main"  # The specific model version to use (can be a branch name, tag name or commit id).
 low_cpu_mem_usage: true  # Whether or not to use memory-efficient model loading.
-quantization_bit: null  # Optional. The number of bits to quantize the model using bitsandbytes. Accepted values: [null, 8, 4].
+quantization_bit: 4  # Optional. The number of bits to quantize the model using bitsandbytes. Accepted values: [null, 8, 4].
 flash_attn: "auto"  # Enable FlashAttention for faster training and inference. Accepted values: ["off", "sdpa", "fa2", "auto"].
 
 
