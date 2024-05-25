@@ -2,7 +2,7 @@
 template: qwen
 model_name_or_path: Qwen/Qwen1.5-7B
 dataset: AbderrahmanSkiredj1-wiki-ary
-output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/dora-16r/epochs-2/run_1/25Mai2024/v1
+output_dir: saves/Qwen15-7B/AbderrahmanSkiredj1-wiki-ary/lora-16r/epochs-2/run_1/25Mai2024/v1
 
 ### model
 use_fast_tokenizer: true  # Whether or not to use one of the fast tokenizer (backed by the tokenizers library).
