@@ -33,5 +33,6 @@ model.push_to_hub(f"{ORG}/{ADAPTER_NAME}", private=True, token=TOKEN)
 # Merge the adapter with the base model
 model = model.merge_and_unload()
 model.push_to_hub(f"{ORG}/{MODEL_NAME}", private=True, token=TOKEN)
+tokenizer.push_to_hub(f"{ORG}/{MODEL_NAME}", private=True, token=TOKEN)
 
 print("\n########## ALL FINISHED ##########\n")
