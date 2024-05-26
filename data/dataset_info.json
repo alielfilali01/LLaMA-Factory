@@ -477,5 +477,32 @@
     "columns": {
       "prompt": "text"
     }
+  },
+  "9esa": {
+    "hf_hub_url": "Ali-C137/Darija-Stories-Dataset",
+    "columns": {
+      "prompt": "Text"
+    }
+  },
+  "Wiki-Ary": {
+    "hf_hub_url": "wikimedia/wikipedia",
+    "subset": "20231101.ary",
+    "columns": {
+      "prompt": "text"
+    }
+  },
+  "Wiki-Ar": {
+    "hf_hub_url": "wikimedia/wikipedia",
+    "subset": "20231101.ar",
+    "columns": {
+      "prompt": "text"
+    }
+  },
+  "Wiki-Arz": {
+    "hf_hub_url": "wikimedia/wikipedia",
+    "subset": "20231101.arz",
+    "columns": {
+      "prompt": "text"
+    }
   }
 }
