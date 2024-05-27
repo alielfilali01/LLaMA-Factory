@@ -511,5 +511,26 @@
     "columns": {
       "prompt": "inputs"
     }
+  },
+  "CulturaX-ar": {
+    "hf_hub_url": "uonlp/CulturaX",
+    "subset": "ar",
+    "columns": {
+      "prompt": "text"
+    }
+  },
+  "CulturaX-arz": {
+    "hf_hub_url": "uonlp/CulturaX",
+    "subset": "arz",
+    "columns": {
+      "prompt": "text"
+    }
+  },
+  "CulturaY-ar": {
+    "hf_hub_url": "ontocord/CulturaY",
+    "subset": "ar",
+    "columns": {
+      "prompt": "text"
+    }
   }
 }
