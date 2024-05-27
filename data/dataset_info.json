@@ -504,5 +504,12 @@
     "columns": {
       "prompt": "text"
     }
+  },
+  "xP3x-arb-arab": {
+    "hf_hub_url": "CohereForAI/xP3x",
+    "subset": "arb_Arab",
+    "columns": {
+      "prompt": "inputs"
+    }
   }
 }
