@@ -532,5 +532,12 @@
     "columns": {
       "prompt": "text"
     }
+  },
+  "Arabic_Aya-translated_soda": {
+    "hf_hub_url": "2A2I/Arabic_Aya",
+    "subset": "CohereForAI-aya_collection-translated_soda",
+    "columns": {
+      "prompt": "targets"
+    }
   }
 }
